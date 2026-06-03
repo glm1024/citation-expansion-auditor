@@ -30,3 +30,7 @@ The skill is intentionally conservative. It treats every citation as a claim-lev
 python3 -m py_compile scripts/*.py
 npx skills add /path/to/citation-expansion-auditor -l
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
