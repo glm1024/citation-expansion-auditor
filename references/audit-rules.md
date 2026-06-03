@@ -32,7 +32,8 @@ Use citation groups by paragraph. Do not create a "continuous citation group" by
 
 Good:
 
-- Paragraph 149: `[37-39]`
+- Paragraph 149 has no existing citations, so place a paragraph-end group: `...运维要求。[37-39]`
+- For a no-citation paragraph-level group, `建议位置` should say `段尾连续引用，放在整段末尾`, not `放在“xxx”之后`.
 - Paragraph 160 metrics sentence: `[43]`
 - Paragraph 160 logs sentence: `[44]`
 - Paragraph 160 traces sentence: `[45]`
@@ -42,6 +43,8 @@ Good:
 Risky:
 
 - A group such as `[37-42]` that spans several paragraphs and topics.
+- Splitting a no-citation paragraph-level group into local markers, such as `[37-38]` in the middle and `[39]` at the end, when the user's rule is paragraph-end grouping.
+- Describing a no-citation paragraph-level group as `放在“xxx”之后`, which makes it look like a sentence-level local insertion instead of a paragraph-end group.
 - Adding seven new citations at the end of a paragraph that already has four targeted references.
 - Placing method-specific citations at paragraph end when they only support one phrase.
 - `建议插入点`: `异构数据融合、图表示和可解释 RCA 相关句后`. This is a summary, not an executable insertion point.
@@ -58,7 +61,8 @@ This pattern makes the output directly editable and prevents vague placement gui
 
 - Existing citations near exact method names should be extended locally, not overridden by paragraph-end groups.
 - If a paragraph already contains several references, use fewer added citations and distribute them near matching clauses.
-- For discussion paragraphs with no citations, a paragraph-end group can work if all papers support the paragraph-level summary.
+- For paragraphs with no citations, default to a paragraph-end continuous group when the papers serve as paragraph-level background or survey support.
+- If a no-citation paragraph has a citation that only supports one narrow claim, still prefer paragraph-end placement only when the limitation note makes the scope clear; otherwise recommend a sentence rewrite rather than implying broad support.
 - Avoid creating 10+ references in one paragraph unless the paragraph is explicitly a survey paragraph.
 
 ## Common Failure Modes

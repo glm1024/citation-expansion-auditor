@@ -27,10 +27,12 @@ This skill expands and audits academic citations for an existing manuscript. The
 
 4. Place citations by claim, not by theme alone.
    - Map each candidate to the exact paragraph and sentence-level claim it supports.
-   - Quote the exact original sentence used as the insertion anchor. Do not describe the anchor with a summary such as "after the heterogeneous-data sentence" unless those exact words appear in the manuscript.
-   - In the `原始文本` field, provide a marked version of the original paragraph with references inserted at the proposed locations, such as `...原文句子。[46] 下一句...`.
+   - If the original paragraph has no citations and the added papers are paragraph-level background or survey support, use one paragraph-end continuous group such as `[37-39]`. Do not split it into multiple local markers.
+   - For no-citation paragraph-level groups, write `建议位置` / `建议插入点` as "place at the end of the whole paragraph." Do not write "after the `xxx` sentence" even when `xxx` is the final sentence; reserve quoted sentence anchors for existing-citation paragraphs or rewrite exceptions.
+   - If the original paragraph already has citations, quote the exact original sentence used as the insertion anchor. Do not describe the anchor with a summary such as "after the heterogeneous-data sentence" unless those exact words appear in the manuscript.
+   - In the `原始文本` field, provide a marked version of the original paragraph. For no-citation paragraph-level groups, append the group at the paragraph end; for existing-citation paragraphs, insert or extend markers at the proposed locations.
    - If a paragraph already has several targeted citations, insert new citations near the relevant sentence instead of dumping them at the paragraph end.
-   - Use paragraph-end grouped citations only when the whole paragraph has no or very few citations and the added papers support the paragraph-level claim.
+   - If a no-citation paragraph contains later claims the papers do not support, either mark the paragraph-end group as `限定后通过` with a limitation note, or recommend a sentence rewrite when paragraph-end placement would be misleading.
 
 5. Verify each citation before handoff.
    - Existence: DOI metadata, official publication page, official PDF, OpenReview/NeurIPS/ACM/IEEE/Elsevier/Springer page, or a recognized preprint record.

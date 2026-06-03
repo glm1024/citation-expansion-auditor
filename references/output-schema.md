@@ -10,10 +10,10 @@ For each proposed citation or citation group, include these Markdown fields:
 - `建议引用形式`: grouped in-text citation form, such as `[37-39]`.
 - `段落编号`: manuscript paragraph number.
 - `插入方式`: `就近插入`, `段尾连续引用`, `改写后段尾引用`, or similar.
-- `建议插入点`: exact original sentence anchor, such as `放在“xxx”之后`. The quoted text must be copied from the manuscript, not summarized by topic.
+- `建议插入点`: for no-citation paragraph-level support, use `段尾连续引用，放在整段末尾`; do not phrase it as `放在“xxx”之后` even if `xxx` is the final sentence. For existing-citation paragraphs, quote the exact original sentence anchor, such as `放在“xxx”之后`.
 - `原段已有引用数`: count of current references in the paragraph.
 - `本处新增引用数`: count added at this location.
-- `原始文本`: paragraph text from the manuscript with inline citation markers inserted at the proposed locations.
+- `原始文本`: paragraph text from the manuscript with citation markers inserted. For no-citation paragraph-level groups, append one group at the paragraph end; for existing-citation paragraphs, mark local insertions or expanded existing references.
 - `推荐插入说明`: concise actionable instruction.
 - `密度处理说明`: why this does or does not overload the paragraph.
 - `引用论文`: paper title.
@@ -32,7 +32,7 @@ For paragraph-level groups, include:
 - `建议引用形式`
 - `段落编号`
 - `插入方式`
-- `建议插入点`: quote exact original sentence anchors for each reference or sub-group.
+- `建议插入点`: use paragraph-end grouping for no-citation paragraph-level groups (`放在整段末尾`); quote exact original sentence anchors only for existing-citation local insertions or rewrite exceptions.
 - `主题`
 - `原段已有引用数`
 - `本处新增引用数`
