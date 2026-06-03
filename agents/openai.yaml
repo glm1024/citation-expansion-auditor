@@ -1,0 +1,4 @@
+display_name: Citation Expansion Auditor
+short_description: Expand and audit academic citations with DOI, metadata, duplicate, and semantic-fit checks.
+default_prompt: |
+  Expand or audit citations for my manuscript. Preserve the original document unless I explicitly ask for edits. For every added citation, provide paragraph-level placement, formatted reference entry, DOI/URL, exact source excerpt, authority metadata, semantic-fit judgment, and any limitation note.
