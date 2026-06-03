@@ -6,7 +6,8 @@ Input: CSV with columns such as:
 - 引用论文 / title
 - DOI/URL / doi / url
 
-Output: CSV and Markdown reports with DOI/official-page evidence.
+Output: Markdown report by default. Use --write-csv for a machine-readable
+intermediate report.
 """
 
 from __future__ import annotations
@@ -142,14 +143,16 @@ def verify(row: dict) -> dict:
     }
 
 
-def write_reports(rows: list[dict], out_prefix: Path) -> None:
+def write_reports(rows: list[dict], out_prefix: Path, write_csv: bool = False) -> None:
     out_prefix.parent.mkdir(parents=True, exist_ok=True)
-    csv_path = out_prefix.with_suffix(".csv")
     md_path = out_prefix.with_suffix(".md")
-    with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(rows)
+    if write_csv:
+        csv_path = out_prefix.with_suffix(".csv")
+        with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            writer.writeheader()
+            writer.writerows(rows)
+        print(csv_path)
     counts: dict[str, int] = {}
     for row in rows:
         counts[row["真实性结论"]] = counts.get(row["真实性结论"], 0) + 1
@@ -168,7 +171,6 @@ def write_reports(rows: list[dict], out_prefix: Path) -> None:
             "",
         ])
     md_path.write_text("\n".join(md), encoding="utf-8")
-    print(csv_path)
     print(md_path)
 
 
@@ -176,12 +178,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("input_csv", type=Path)
     ap.add_argument("--out-prefix", type=Path, default=Path("paper_existence_audit"))
+    ap.add_argument("--write-csv", action="store_true", help="also write a CSV report for machine-readable QA")
     args = ap.parse_args()
     with args.input_csv.open(encoding="utf-8-sig", newline="") as f:
         rows = [verify(row) for row in csv.DictReader(f)]
-    write_reports(rows, args.out_prefix)
+    write_reports(rows, args.out_prefix, args.write_csv)
 
 
 if __name__ == "__main__":
     main()
-

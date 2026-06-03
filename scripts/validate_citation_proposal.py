@@ -4,6 +4,9 @@
 This script catches mechanical issues before manual academic judgment:
 duplicate DOI/title, missing metadata, overlong evidence excerpts, malformed
 reference numbers, and citation groups that cross unrelated paragraphs.
+
+It writes a Markdown report by default. Use --write-csv for a machine-readable
+intermediate report.
 """
 
 from __future__ import annotations
@@ -145,15 +148,17 @@ def validate(rows: list[dict], existing_refs: Path | None, excerpt_limit: int) -
     return issues
 
 
-def write_report(issues: list[dict], out_prefix: Path) -> None:
+def write_report(issues: list[dict], out_prefix: Path, write_csv: bool = False) -> None:
     out_prefix.parent.mkdir(parents=True, exist_ok=True)
-    csv_path = out_prefix.with_suffix(".csv")
     md_path = out_prefix.with_suffix(".md")
     fieldnames = ["级别", "编号", "字段", "问题"]
-    with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(issues)
+    if write_csv:
+        csv_path = out_prefix.with_suffix(".csv")
+        with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(issues)
+        print(csv_path)
 
     counts: dict[str, int] = {}
     for row in issues:
@@ -168,7 +173,6 @@ def write_report(issues: list[dict], out_prefix: Path) -> None:
     for row in issues:
         md.append(f"- `{row['级别']}` {row['编号']} / {row['字段']}: {row['问题']}")
     md_path.write_text("\n".join(md), encoding="utf-8")
-    print(csv_path)
     print(md_path)
 
 
@@ -178,6 +182,7 @@ def main() -> None:
     ap.add_argument("--existing-refs", type=Path)
     ap.add_argument("--excerpt-limit", type=int, default=25)
     ap.add_argument("--out-prefix", type=Path, default=Path("citation_proposal_validation"))
+    ap.add_argument("--write-csv", action="store_true", help="also write a CSV report for machine-readable QA")
     ap.add_argument("--warn-only", action="store_true", help="exit 0 even when error-level issues are found")
     args = ap.parse_args()
 
@@ -186,7 +191,7 @@ def main() -> None:
     if not rows:
         raise SystemExit("input CSV has no rows")
     issues = validate(rows, args.existing_refs, args.excerpt_limit)
-    write_report(issues, args.out_prefix)
+    write_report(issues, args.out_prefix, args.write_csv)
     if not args.warn_only and any(row["级别"] == ERROR for row in issues):
         raise SystemExit(1)
 

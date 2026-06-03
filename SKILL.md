@@ -27,6 +27,8 @@ This skill expands and audits academic citations for an existing manuscript. The
 
 4. Place citations by claim, not by theme alone.
    - Map each candidate to the exact paragraph and sentence-level claim it supports.
+   - Quote the exact original sentence used as the insertion anchor. Do not describe the anchor with a summary such as "after the heterogeneous-data sentence" unless those exact words appear in the manuscript.
+   - In the `原始文本` field, provide a marked version of the original paragraph with references inserted at the proposed locations, such as `...原文句子。[46] 下一句...`.
    - If a paragraph already has several targeted citations, insert new citations near the relevant sentence instead of dumping them at the paragraph end.
    - Use paragraph-end grouped citations only when the whole paragraph has no or very few citations and the added papers support the paragraph-level claim.
 
@@ -38,16 +40,17 @@ This skill expands and audits academic citations for an existing manuscript. The
    - Formatting: use the requested style consistently and prefer formal proceedings/journal versions over arXiv when available.
 
 6. Deliver user-facing files.
-   - A detailed citation suggestion table.
-   - A grouped insertion strategy table.
-   - One or more audit reports: semantic fit, title-author match, existence, duplicate detection, and reviewer-feedback handling.
+   - Produce one Markdown handoff file by default. Do not create Excel/XLSX deliverables unless the user explicitly asks.
+   - Include a detailed citation suggestion section.
+   - Include a grouped insertion strategy section.
+   - Include audit sections as needed: semantic fit, title-author match, existence, duplicate detection, and reviewer-feedback handling.
    - Keep evidence excerpts short and exact. Do not invent paper text.
 
 ## Quality Gates
 
 Read [audit-rules.md](references/audit-rules.md) before finalizing added references. It contains the verification criteria and common failure modes from real thesis citation work.
 
-Use [output-schema.md](references/output-schema.md) when creating CSV/XLSX/Markdown deliverables.
+Use [output-schema.md](references/output-schema.md) when creating Markdown deliverables.
 
 Use scripts when the input shape matches:
 
@@ -57,6 +60,8 @@ Use scripts when the input shape matches:
 | Check added references exist | `scripts/check_paper_existence.py` |
 | Check title-author match | `scripts/check_title_author_match.py` |
 | Validate citation proposal CSV for duplicates, ranges, and excerpt length | `scripts/validate_citation_proposal.py` |
+
+The scripts read CSV when convenient, but their default report output is Markdown. Use `--write-csv` only for machine-readable intermediate QA.
 
 ## Judgment Rules
 
@@ -79,5 +84,4 @@ Be conservative and explicit. For each questionable item, say one of:
 - `不建议新增`: reuse an existing reference or remove it from the added set.
 - `需人工复核`: authoritative evidence was insufficient or contradictory.
 
-When the user will manually edit the manuscript, provide original paragraph text, suggested insertion point, reference entry, exact evidence excerpt, evidence source, and the limitation note.
-
+When the user will manually edit the manuscript, provide original paragraph text with inline citation markers, exact insertion anchor sentence, reference entry, exact evidence excerpt, evidence source, and the limitation note.

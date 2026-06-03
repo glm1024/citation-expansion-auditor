@@ -1,19 +1,19 @@
 # Output Schema
 
-Use these fields for citation expansion deliverables. The exact language can be localized, but keep the information content.
+Use these fields for citation expansion deliverables. The default user-facing deliverable is one Markdown file, not Excel/XLSX. CSV may be used only as an internal machine-readable intermediate or when the user explicitly asks.
 
-## Citation Suggestion Table
+## Citation Suggestion Section
 
-Recommended columns:
+For each proposed citation or citation group, include these Markdown fields:
 
 - `新增编号`: reference number, such as `[37]`.
 - `建议引用形式`: grouped in-text citation form, such as `[37-39]`.
 - `段落编号`: manuscript paragraph number.
 - `插入方式`: `就近插入`, `段尾连续引用`, `改写后段尾引用`, or similar.
-- `建议插入点`: exact sentence/phrase or paragraph end.
+- `建议插入点`: exact original sentence anchor, such as `放在“xxx”之后`. The quoted text must be copied from the manuscript, not summarized by topic.
 - `原段已有引用数`: count of current references in the paragraph.
 - `本处新增引用数`: count added at this location.
-- `原始文本`: paragraph text from the manuscript.
+- `原始文本`: paragraph text from the manuscript with inline citation markers inserted at the proposed locations.
 - `推荐插入说明`: concise actionable instruction.
 - `密度处理说明`: why this does or does not overload the paragraph.
 - `引用论文`: paper title.
@@ -25,14 +25,14 @@ Recommended columns:
 - `DOI/URL`: DOI or official page.
 - `发表年份`, `引用次数`, `元数据校验来源`, `摘录URL`: optional but useful.
 
-## Grouped Insertion Strategy Table
+## Grouped Insertion Strategy Section
 
-Recommended columns:
+For paragraph-level groups, include:
 
 - `建议引用形式`
 - `段落编号`
 - `插入方式`
-- `建议插入点`
+- `建议插入点`: quote exact original sentence anchors for each reference or sub-group.
 - `主题`
 - `原段已有引用数`
 - `本处新增引用数`
@@ -41,7 +41,7 @@ Recommended columns:
 
 ## Audit Reports
 
-Create separate reports when useful:
+Create Markdown sections when useful:
 
 1. `逐篇核验报告`: semantic fit and action.
 2. `题名作者核验报告`: title-author match against Crossref/official pages.
@@ -70,5 +70,4 @@ When handing off, include:
 - Count by audit verdict.
 - Any replacements or duplicates removed.
 - Any claims requiring manuscript wording changes.
-- Links to user-facing output files.
-
+- Link to the Markdown handoff file when one is saved.

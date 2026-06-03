@@ -36,12 +36,23 @@ Good:
 - Paragraph 160 metrics sentence: `[43]`
 - Paragraph 160 logs sentence: `[44]`
 - Paragraph 160 traces sentence: `[45]`
+- `建议插入点`: `放在“早期融合策略多采用特征级拼接或决策级集成，将日志统计特征、调用链拓扑属性与指标时序向量简单组合后输入分类模型。”之后`
+- `原始文本`: include the paragraph with inline markers, for example `...输入分类模型。[46] 此类浅层融合...`
 
 Risky:
 
 - A group such as `[37-42]` that spans several paragraphs and topics.
 - Adding seven new citations at the end of a paragraph that already has four targeted references.
 - Placing method-specific citations at paragraph end when they only support one phrase.
+- `建议插入点`: `异构数据融合、图表示和可解释 RCA 相关句后`. This is a summary, not an executable insertion point.
+
+When multiple citations go into one paragraph, mark them directly inside the original paragraph text:
+
+```text
+早期融合策略多采用特征级拼接或决策级集成，将日志统计特征、调用链拓扑属性与指标时序向量简单组合后输入分类模型。[46] 此类浅层融合虽实现了数据层面的整合，却未能解决异构数据间的语义鸿沟问题，指标的低频趋势特征与日志的高频离散特征在简单拼接中相互干扰，导致模型难以学习跨模态的深层关联。随着图神经网络的发展，近期研究开始尝试以系统依赖拓扑为骨架，将多模态数据作为节点属性进行图卷积运算，通过消息传递机制聚合邻居信息以实现根因定位。[47] 例如，ART [9] 利用深度自编码器融合多源指标并构建服务依赖图进行根因定位，Eadro [10] 则通过时空图神经网络联合建模调用链结构与指标时序特征。该类方法在一定程度上提升了复杂故障的定位精度，但仍面临特征工程依赖与可解释性不足的挑战。[48-49] 现有融合架构多采用端到端黑盒模型，其决策过程缺乏透明度，运维人员难以理解模型为何将特定节点判定为根因，限制了方法在关键业务场景中的落地应用。此外，现有方法普遍假设训练数据与测试数据分布一致，面对云原生环境下服务拓扑动态演化与未知故障模式时，泛化能力受限。
+```
+
+This pattern makes the output directly editable and prevents vague placement guidance.
 
 ## Density Rules
 
@@ -94,4 +105,3 @@ When the user provides external feedback:
 4. Adopt only factually correct feedback.
 5. If the feedback is already handled, say so and keep the current output.
 6. Generate a handling report listing accepted changes, rejected claims, and already-handled points.
-

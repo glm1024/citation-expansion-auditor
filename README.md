@@ -17,11 +17,11 @@ The skill is intentionally conservative. It treats every citation as a claim-lev
 
 - `SKILL.md`: main skill instructions.
 - `references/audit-rules.md`: verification rules and common failure modes.
-- `references/output-schema.md`: recommended CSV/XLSX/Markdown output fields.
+- `references/output-schema.md`: recommended Markdown output fields.
 - `scripts/extract_docx_text.py`: extract stable paragraph numbers and reference-list text from DOCX.
-- `scripts/check_paper_existence.py`: verify DOI/URL existence evidence.
-- `scripts/check_title_author_match.py`: compare proposed title/authors against Crossref/DataCite metadata.
-- `scripts/validate_citation_proposal.py`: catch duplicate DOI/title, missing metadata, long excerpts, and citation-group issues.
+- `scripts/check_paper_existence.py`: verify DOI/URL existence evidence and write a Markdown report.
+- `scripts/check_title_author_match.py`: compare proposed title/authors against Crossref/DataCite metadata and write a Markdown report.
+- `scripts/validate_citation_proposal.py`: catch duplicate DOI/title, missing metadata, long excerpts, and citation-group issues in a Markdown report.
 - `evals/evals.json`: example evaluation prompts.
 
 ## Quick Validation
