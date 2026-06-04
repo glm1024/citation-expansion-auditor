@@ -43,10 +43,12 @@ This skill expands and audits academic citations for an existing manuscript. The
 
 6. Deliver user-facing files.
    - Produce one Markdown handoff file by default. Do not create Excel/XLSX deliverables unless the user explicitly asks.
-   - Include a detailed citation suggestion section.
-   - Include a grouped insertion strategy section.
+   - Include a detailed citation suggestion section for manual manuscript editing. The `原始文本` field should already contain the proposed citation marker, so do not repeat internal fields such as insertion-position notes, recommendation notes, or density notes in each item unless the user explicitly asks for an audit trace.
+   - Include a grouped insertion strategy section only when it helps the user review density. Keep it separate from per-paper details, or omit it when the user asks for a clean handoff file.
    - Include audit sections as needed: semantic fit, title-author match, existence, duplicate detection, and reviewer-feedback handling.
-   - Keep evidence excerpts short and exact. Do not invent paper text.
+   - Use exact evidence excerpts. Prefer one complete sentence from the paper, official abstract, or authoritative index abstract; do not truncate mid-sentence. If the most relevant sentence is too long, choose a shorter complete sentence from the same source and explain the closer semantic match in Chinese.
+   - For every paper, split semantic explanation into two reader-facing fields: why this paper can cite the manuscript paragraph, and why the quoted paper sentence is the most relevant/credible evidence.
+   - Do not invent paper text.
 
 ## Quality Gates
 
@@ -86,4 +88,4 @@ Be conservative and explicit. For each questionable item, say one of:
 - `不建议新增`: reuse an existing reference or remove it from the added set.
 - `需人工复核`: authoritative evidence was insufficient or contradictory.
 
-When the user will manually edit the manuscript, provide original paragraph text with inline citation markers, exact insertion anchor sentence, reference entry, exact evidence excerpt, evidence source, and the limitation note.
+When the user will manually edit the manuscript, provide original paragraph text with inline citation markers, the formatted reference entry, one exact complete-sentence evidence excerpt, evidence source, `引用理由`, `摘录可信理由`, and a clear review conclusion/limitation note.

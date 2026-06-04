@@ -7,27 +7,21 @@ Use these fields for citation expansion deliverables. The default user-facing de
 For each proposed citation or citation group, include these Markdown fields:
 
 - `新增编号`: reference number, such as `[37]`.
-- `建议引用形式`: grouped in-text citation form, such as `[37-39]`.
-- `段落编号`: manuscript paragraph number.
-- `插入方式`: `就近插入`, `段尾连续引用`, `改写后段尾引用`, or similar.
-- `建议插入点`: for no-citation paragraph-level support, use `段尾连续引用，放在整段末尾`; do not phrase it as `放在“xxx”之后` even if `xxx` is the final sentence. For existing-citation paragraphs, quote the exact original sentence anchor, such as `放在“xxx”之后`.
-- `原段已有引用数`: count of current references in the paragraph.
-- `本处新增引用数`: count added at this location.
 - `原始文本`: paragraph text from the manuscript with citation markers inserted. For no-citation paragraph-level groups, append one group at the paragraph end; for existing-citation paragraphs, mark local insertions or expanded existing references.
-- `推荐插入说明`: concise actionable instruction.
-- `密度处理说明`: why this does or does not overload the paragraph.
-- `引用论文`: paper title.
-- `格式化参考文献`: complete reference entry in the requested style.
-- `相关文本摘录`: exact evidence excerpt from the paper or official abstract.
+- `引用论文`: complete formatted reference entry in the requested style.
+- `相关文本摘录`: exact complete sentence from the paper, official abstract, or authoritative index abstract. Do not output a sentence fragment such as text ending in `and`, `with`, or `for`.
 - `摘录来源`: PDF section, official abstract, Crossref/OpenAlex abstract, etc.
-- `相关性说明`: what claim the paper supports.
-- `复核结论`: direct pass, limited pass, replacement rationale, or warning.
+- `引用理由`: why this paper can be used as a citation for this manuscript paragraph, including any limitation.
+- `摘录可信理由`: why the quoted source sentence is relevant and credible evidence for the paragraph claim.
+- `复核结论`: direct pass, limited pass, replacement rationale, or warning in reader-friendly language.
 - `DOI/URL`: DOI or official page.
 - `发表年份`, `引用次数`, `元数据校验来源`, `摘录URL`: optional but useful.
 
+Do not include per-item internal process fields such as `建议位置`, `推荐插入说明`, `密度处理说明`, or `相关性说明` in the clean Markdown handoff when `原始文本` already marks the citation location. Those fields may be used in internal CSV/audit drafts only.
+
 ## Grouped Insertion Strategy Section
 
-For paragraph-level groups, include:
+This section is optional. Use it only when the user wants density review or planning context. Keep it separate from per-paper detail entries.
 
 - `建议引用形式`
 - `段落编号`
@@ -58,7 +52,7 @@ For audit verdicts, use:
 
 ## Evidence Excerpts
 
-Use short exact excerpts. Keep them under 25 words unless the user explicitly needs more and copyright constraints allow it. If the exact sentence in the source is longer, excerpt the relevant clause and state the source.
+Use short exact excerpts. Prefer a complete sentence. Keep it under 25 words unless the user explicitly needs more and copyright constraints allow it. If the most relevant sentence is too long, choose a shorter complete sentence from the same source and use `摘录可信理由` to explain the semantic match.
 
 Do not paraphrase evidence as if it were original text.
 
